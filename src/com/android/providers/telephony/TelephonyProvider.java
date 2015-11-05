@@ -313,9 +313,8 @@ public class TelephonyProvider extends ContentProvider
                     // Columns not included in UNIQUE constraint: name, current, edited,
                     // user, server, password, authtype, type, sub_id,
                     // modem_cognitive, max_conns, wait_time, max_conns_time, mtu, bearer_bitmask
-                    // Change UNIQUE_KEY_SIZE if the UNIQUE set is changed
-                    "UNIQUE (numeric, mcc, mnc, apn, proxy, port, mmsproxy, mmsport, mmsc," +
-                    "carrier_enabled, bearer, mvno_type, mvno_match_data, profile_id));");
+                    "UNIQUE (name, numeric, mcc, mnc, apn, proxy, port, mmsproxy, mmsport, mmsc," +
+                    "type, carrier_enabled, bearer, mvno_type, mvno_match_data, profile_id));");
             if (DBG) log("dbh.createCarriersTable:-");
         }
 
