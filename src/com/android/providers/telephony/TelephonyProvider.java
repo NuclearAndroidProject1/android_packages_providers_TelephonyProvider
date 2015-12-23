@@ -311,9 +311,9 @@ public class TelephonyProvider extends ContentProvider
                     // Uniqueness collisions are used to trigger merge code so if a field is listed
                     // here it means we will accept both (user edited + new apn_conf definition)
                     // Columns not included in UNIQUE constraint: name, current, edited,
-                    // user, server, password, authtype, type, protocol, roaming_protocol, sub_id,
-                    // modem_cognitive, max_conns, wait_time, max_conns_time, mtu, bearer_bitmask,
-                    // user_visible
+                    // user, server, password, authtype, type, sub_id,
+                    // modem_cognitive, max_conns, wait_time, max_conns_time, mtu, bearer_bitmask
+                    // Change UNIQUE_KEY_SIZE if the UNIQUE set is changed
                     "UNIQUE (numeric, mcc, mnc, apn, proxy, port, mmsproxy, mmsport, mmsc," +
                     "carrier_enabled, bearer, mvno_type, mvno_match_data, profile_id));");
             if (DBG) log("dbh.createCarriersTable:-");
@@ -750,7 +750,7 @@ public class TelephonyProvider extends ContentProvider
                 }
                 oldVersion = 21 << 16 | 6;
             }
-            if (oldVersion < (17 << 16 | 6)) {
+            if (oldVersion < (22 << 16 | 6)) {
                 Cursor c = null;
                 try {
                     c = db.query(CARRIERS_TABLE, null, null, null, null, null, null,
@@ -769,7 +769,7 @@ public class TelephonyProvider extends ContentProvider
                         c.close();
                     }
                 }
-                oldVersion = 17 << 16 | 6;
+                oldVersion = 22 << 16 | 6;
             }
             if (DBG) {
                 log("dbh.onUpgrade:- db=" + db + " oldV=" + oldVersion + " newV=" + newVersion);
